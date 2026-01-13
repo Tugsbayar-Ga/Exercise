@@ -54,7 +54,7 @@ Console.Clear();
 int doorsLeft = target - streak;
 double possoble = Math.Pow(0.5, doorsLeft) * 100;
 
-// ===== TOP DASHBOARD =====
+//------------------Top-Stats----------------
 Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine($"=== DOOR STREAK ({target}) ===");
 Console.ForegroundColor = ConsoleColor.White;

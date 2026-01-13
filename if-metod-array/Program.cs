@@ -1,264 +1,126 @@
-﻿// if( 6>=3){
-//     Console.WriteLine("Hello, World!");
-// }  ---------Första---------------------------------------------------------------------
+﻿while (true) // App loop
+{
+Console.Clear();
+Console.WriteLine("=== DOOR STREAK ===");
+Console.WriteLine("Choose a challenge:");
+Console.WriteLine("1) 10 doors (Easy)");
+Console.WriteLine("2) 15 doors (Medium)");
+Console.WriteLine("3) 30 doors (Insane)");
+Console.WriteLine("Q) Exit");
+Console.WriteLine("-------------------");
+Console.Write("Your choice: ");
 
-// string username = Console.ReadLine();
-// if (username == "kalleanka")
-// Console.WriteLine("Welcome!");
-// ---------Andra-------------------------------------------------------------------
+ConsoleKeyInfo menuKey = Console.ReadKey();
+Console.WriteLine();
 
-// string username = Console.ReadLine();
-// string password = Console.ReadLine();
-// if (username == "kalleanka" && password == "12345")
-//     Console.WriteLine("Welcome!");
-// else
-//     Console.WriteLine("Wrong username or password");
-// -----------tredje--------------------------------------------------------------------
+int target;
 
-// for (int i = 0; i < 32; i++)
-// {
-//     Console.WriteLine("Hello, World!");
-// } -------------fjärde--------------------------------------------------------------
+if (menuKey.Key == ConsoleKey.D1) target = 10;
+else if (menuKey.Key == ConsoleKey.D2) target = 15;
+else if (menuKey.Key == ConsoleKey.D3) target = 30;
+else if (menuKey.Key == ConsoleKey.Q) break;
+else continue;
 
-// string password = "";
-// while (password != "12345"){
-//     password = Console.ReadLine();
-//     Console.Clear();
-//     if (password != "12345"){
-//         Console.WriteLine("Wrong try again");
-//         Console.ReadKey();
-//         Console.Clear();
-//     }}
-// Console.WriteLine("Welcome!");
-// Console.ReadLine();
-// ----------femte--------------------------------------------------------------------------
+PlayGame(target);
+}
 
-// int i = 0;
-// while (i != 5)
-// {
-//     i++;
-//     Console.WriteLine(i);
-// }
-// Console.WriteLine("högre en 5");  ------while-ränkar up till mer än 5--------
+Console.WriteLine("\nThanks for playing Door Streak.");
 
-// for (int i = 0; i <= 5; i++)
-// {
-//     Console.WriteLine(i);
-// }
-// Console.WriteLine("högre en 5");
-// Console.ReadLine();  -------for-ränkar up till mer än 5------
+static void PlayGame(int target)
+{
+int streak = 0;
+int record = 0;
+int attempts = 0;
 
-// for (int i = 0; i < 5; i++)
-// {
-// //     Console.Write("Skriv ett tal: ");
-// //     int tal = int.Parse(Console.ReadLine());
+List<string> history = new List<string>();
+Random random = new Random();
+bool quit = false;
 
-// //     if (tal > 5)
-// //         Console.WriteLine("högre än 5!");
-// // } -------for- kontrolerar om det det talet jag skriver är högre än 5-------
+while (!quit)
+{
+Console.Clear();
 
-// // int i = 0;
-// // while (i < 5)
-// // {
-// //     Console.Write("Skriv ett tal: ");
-// //     string input = Console.ReadLine();
-// //     int tal = int.Parse(input);
-// //     if (tal > 5)
-// //         Console.WriteLine("      högre än 5!"); 
-// //     else
-// //         Console.WriteLine(); 
-// //     i++;
-// // } samma/=/=//
-// // while (i < 5)
-// // {
-// //     Console.Write("Skriv ett tal: ");
-// //     int cursorX = Console.CursorLeft;
-// //     int cursorY = Console.CursorTop;
-// //     string input = Console.ReadLine();
+int doorsLeft = target - streak;
+double runChance = Math.Pow(0.5, doorsLeft) * 100;
 
-// //     // Testar om det är ett tal
-// //     if (!int.TryParse(input, out int tal))
-// //     {
-// //         Console.WriteLine("  Du måste skriva ett tal!");
-// //         continue; // hoppa över resten av loopen och börja om
-// //     }
-// //     // Flytta tillbaka markören efter det användaren skrev
-// //     Console.SetCursorPosition(cursorX + input.Length, cursorY);
-// //     if (tal > 5)
-// //     Console.Write("   högre än 5!");
-// //     Console.WriteLine();
-// //     i++;
-// // }  ----------------------------------sjätte--------------------------------------------
+Console.WriteLine($"=== DOOR STREAK ({target}) ===");
+Console.WriteLine($"Record: {record}");
+Console.WriteLine($"Attempts: {attempts}");
+Console.WriteLine($"Current Streak: {streak}");
+Console.WriteLine($"Doors left: {doorsLeft}");
+Console.WriteLine($"Next door chance: 50%");
+Console.WriteLine($"Chance to finish run: {runChance:F10}%");
+Console.WriteLine("--------------------------------");
+Console.WriteLine("Choose door 1 or 2 (or press Q to quit run)");
+Console.Write("> ");
 
-// // string input;
-// // while (true){
-// // Console.Write("Skriv ett heltal: ");
-// // input = Console.ReadLine(); // Läs in texten från användaren
+ConsoleKeyInfo key = Console.ReadKey();
+Console.WriteLine();
 
-// // // Försök konvertera texten till ett tal
-// // if (int.TryParse(input, out int number)){
-// // Console.WriteLine($"Du skrev ett giltigt tal: {number}  hej då!!!!");
-// // Thread.Sleep(500);
-// // break; 
-// // }
-// // else{
-// // Console.WriteLine("   Ogiltigt!   Skriv ett heltal.");
-// // Thread.Sleep(300);
-// // }}
+if (key.Key == ConsoleKey.Q)
+break;
 
-// string input;
-// while (true){
-// Console.Write("Skriv ett heltal: ");
-// input = Console.ReadLine();
+int choice;
+try
+{
+choice = Convert.ToInt32(key.KeyChar.ToString());
+}
+catch
+{
+continue;
+}
 
-// // Kolla om alla tecken är siffror
-// if (!string.IsNullOrEmpty(input) && input.All(char.IsDigit)){
-//     Console.WriteLine($"Bra! Du skrev ett giltigt tal: {input}");
-//     break;
-// }
-// else{
-//     Console.WriteLine("Ogiltigt! Skriv endast siffror."); 
-//     Thread.Sleep(1000);
-//     Console.Clear();
-// }}Console.ReadLine();// ------sjunde------------------------------------------------------
+if (choice != 1 && choice != 2)
+continue;
 
-// Random random = new Random();
-// int taletAttGissa = random.Next(1, 101);
-// int gissning = 0; //fråga den!!!
+int correctDoor = random.Next(1, 3);
+attempts++;
 
-// Console.WriteLine("Välkommen till 'Gissa siffran'!");
-// Console.WriteLine("Jag har valt ett tal mellan 1 och 100. Kan du gissa vilket?");
+bool win = choice == correctDoor;
 
-// while (gissning != taletAttGissa)
-// {
-//     Console.Write("Skriv din gissning: ");
-//     string input = Console.ReadLine();
+if (win)
+{
+streak++;
+history.Add("Win");
+Console.WriteLine("YOU FOUND GOLD!");
+}
+else
+{
+streak = 0;
+history.Add("Loss");
+Console.WriteLine($"EMPTY! Gold was behind door {correctDoor}");
+}
 
-//     if (!int.TryParse(input, out gissning)){
-//     Console.WriteLine("Det där var inte ett giltigt tal. Försök igen.");
-//     continue;
-//     }
+record = Math.Max(record, streak);
 
-// if (gissning < taletAttGissa){
-//     Console.WriteLine("För lågt! Försök igen.");
-//     }
-// else if (gissning > taletAttGissa){
-//     Console.WriteLine("För högt! Försök igen.");
-//     }
-// else{
-// Console.WriteLine("Grattis! Du gissade rätt!");
-//     }}------------------------------åtta------------------------------------------------
+if (streak == target)
+{
+Console.WriteLine($"\nYOU BEAT THE {target} DOOR CHALLENGE!");
+Console.ReadKey();
+quit = true;
+}
+else
+{
+Console.WriteLine("Press any key...");
+Console.ReadKey();
+}
+}
 
-// ButikUppgift(); // Kör funktionen
-// static void ButikUppgift()
-// {
-//     // 1. Skapa listor med föremålens namn och vikter
-//     List<string> namn = ["Äpple", "Limpa", "Mjölk", "Ost", "Kött"];
-//     List<int> vikt = [];
+// End of run stats
+Console.Clear();
+int wins = 0, losses = 0;
+foreach (var r in history)
+{
+if (r == "Win") wins++;
+else losses++;
+}
 
-//     // 2. Fyll viktlistan med slumpade vikter
-//     for (int i = 0; i < 5; i++)
-//     { vikt.Add(Random.Shared.Next(1, 101)); }
-//     3. Skriv ut rubrik
-//     Console.ForegroundColor = ConsoleColor.Yellow;
-//     Console.WriteLine("Föremål i butik:");
-//     Console.ResetColor();
-
-//     // Skriv ut föremålen
-//     for (int i = 0; i < namn.Count; i++)
-//     {
-//         Console.WriteLine($"{namn[i]} väger {vikt[i]}");
-//     }
-
-//     // 4. Användarens maxvikt
-//     int maxVikt;
-//     while (true)
-//     {
-//         Console.Write("\nHur mycket kan din karaktär bära? ");
-//         string input = Console.ReadLine();
-
-//         if (int.TryParse(input, out maxVikt))
-//             break;
-
-//         Console.WriteLine("Du måste skriva ett heltal!");
-//     }
-
-//     // 5. Skriv vad användaren kan bära
-//     Console.WriteLine("\nDu kan bära:");
-//     for (int i = 0; i < namn.Count; i++)
-//     {
-//         if (vikt[i] <= maxVikt)
-//         {
-//             Console.WriteLine($"{namn[i]} (vikt {vikt[i]})");
-//         }
-//     }
-//     // 6. Skriv vad som är för tungt på ett separat ställe (OM det finns något)
-//     bool Tunga = false;
-    
-//     // Kontrollera först om det finns några tunga föremål
-//     for (int i = 0; i < namn.Count; i++)
-//     {
-//         if (vikt[i] > maxVikt)
-//         {
-//             Tunga = true;
-//             break;
-//         }
-//     }
-    
-//     // Skriv bara "För tungt:" om det faktiskt finns tunga föremål
-//     if (Tunga)
-//     {
-//         Console.WriteLine("\nFör tungt:");
-//         for (int i = 0; i < namn.Count; i++)
-//         {
-//             if (vikt[i] > maxVikt)
-//             {
-//                 Console.WriteLine($"{namn[i]} (vikt {vikt[i]}) för tungt");
-//             }
-//         }
-//     }
-//     // 7. Paus 
-//     Console.WriteLine("\nTryck valfri tangent för att avsluta...");
-//     Console.ReadKey();
-// } ------------------------------------------Prov------------------------------------------------
-
-// List<string> xxxx = new List<string> {"alla är gay","Chineska muren","kineser", "kisiska vapen", "Tuge"};
-// // -----------------------------------1-------------------------------------------------------------
-
-// for (int i = 0; i < xxxx.Count; i++)
-// {
-//     Console.WriteLine(xxxx[i]);
-// } ------------------------------------2--------------------------------------------------------------
-
-// string[] klasskamrater = { "Allah", "Sara", "ErikPixon", "Annabellamuhhamed", "MohamedProfeted" };
-// -------------------------------------3----------------------------------------------------------------
-
-// int[] tal = { 2, 5, 7, 9, 10 };
-// List<int> tal = new List<int> { 2, 5, 7, 9, 10 };
-// -------------------------------------4----------------------------------------------------------------
-
-// string[] klasskamrater = { "Pelle", "Sara", "Ali", "Emma", "Noah" };
-// string[] leksaker = { "Barbie", "Bil", "Lego", "Docka", "Boll" };
-// int[] betyg = { 5, 8, 7, 6, 9 };
-// for (int i = 0; i < klasskamrater.Length; i++)
-// { Console.WriteLine($"{klasskamrater[i]} ger {leksaker[i]} betyget {betyg[i]}"); } 
-// Console.ReadKey(); -----------------5-----------------------------------------------------------------
-
-// List<string> cities = new List<string>();
-// ---------------------------------------6--------------------------------------------------------------
-
-// List<string> cities = new List<string>();
-// while (true)  
-// {Console.Write("Skriv en stad eller ''exit'' för att avsluta): ");
-//     string input = Console.ReadLine();
-//     if (input == "exit")
-//     {break;}
-//     cities.Add(input); }
-// ---------------------------------------7------------------------------------------------------------
-
-// Console.WriteLine("\nStäder som du skrev in:");
-//     foreach (string city in cities)
-//     {
-//     Console.WriteLine(city);
-//     } Console.ReadKey();
-// -----------------------------------------8------------------------------------------------------------
+Console.WriteLine($"=== RUN STATS ({target}) ===");
+Console.WriteLine($"Attempts: {attempts}");
+Console.WriteLine($"Wins: {wins}");
+Console.WriteLine($"Losses: {losses}");
+Console.WriteLine($"Best streak: {record}");
+Console.WriteLine("----------------------------");
+Console.WriteLine("Press any key to return to menu...");
+Console.ReadKey();
+}

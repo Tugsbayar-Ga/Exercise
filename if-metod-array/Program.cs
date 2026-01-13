@@ -52,7 +52,8 @@ while (true)
 Console.Clear();
 
 int doorsLeft = target - streak;
-double possoble = Math.Pow(0.5, doorsLeft) * 100;
+double possoble = Math.Pow(0.5, doorsLeft) * 100; //sökte den
+double streakChance = Math.Pow(0.5, streak) * 100;  //sökte den
 
 //------------------Top-Stats----------------
 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -67,6 +68,7 @@ Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine($"Doors Left: {doorsLeft}");
 Console.ForegroundColor = ConsoleColor.Red;
 Console.WriteLine($"Chance to finish run: {possoble:F10}%");
+Console.WriteLine($"Chance this streak exists: {streakChance:F6}%");
 Console.ForegroundColor = ConsoleColor.Gray;
 Console.WriteLine("Next door chance always: 50%");
 Console.WriteLine("--------------------------------");
@@ -98,7 +100,7 @@ attempts++;
 
 bool win = choice == correctDoor;
 
-if (win)
+if (win) 
 {
 Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine("YOU FOUND GOLD!");

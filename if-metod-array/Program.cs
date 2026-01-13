@@ -3,15 +3,15 @@
 Console.Clear();
 
 Console.ForegroundColor = ConsoleColor.Cyan;
-Console.WriteLine("=== DOOR STREAK ===");
+Console.WriteLine("=== Emilia STREAK ===");
 Console.ForegroundColor = ConsoleColor.White;
 Console.WriteLine("Choose a challenge:");
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("1) 10 doors (Easy)");
+Console.WriteLine("1) 10 Emilia (Easy)");
 Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine("2) 15 doors (Medium)");
+Console.WriteLine("2) 15 Emilia (Medium)");
 Console.ForegroundColor = ConsoleColor.Red;
-Console.WriteLine("3) 30 doors (Insane)");
+Console.WriteLine("3) 30 Emilia (Insane)");
 Console.ForegroundColor = ConsoleColor.Gray;
 Console.WriteLine("Q) Exit");
 Console.ResetColor();
@@ -34,7 +34,7 @@ Console.Clear();
 Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine("Thanks for playing Door Streak!");
 Console.ResetColor();
-
+Thread.Sleep(800);
 
 static void PlayGame(int target)
 {
@@ -61,7 +61,7 @@ Console.WriteLine($"=== DOOR STREAK ({target}) ===");
 Console.ForegroundColor = ConsoleColor.White;
 Console.WriteLine($"Attempts: {attempts}");
 Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine($"Current Streak: {streak}");
+Console.WriteLine($"Current Streak Emilia: {streak}");
 Console.ForegroundColor = ConsoleColor.Magenta;
 Console.WriteLine($"Record: {record}");
 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -153,7 +153,7 @@ Console.WriteLine($"Guess right: {wins}");
 Console.ForegroundColor = ConsoleColor.Red;
 Console.WriteLine($"Guess wrong: {losses}");
 Console.ForegroundColor = ConsoleColor.Magenta;
-Console.WriteLine($"Best Streak: {record}");
+Console.WriteLine($"Best Emilia Streak: {record}");
 Console.ForegroundColor = ConsoleColor.White;
 Console.WriteLine($"Attempts: {attempts}");
 Console.ForegroundColor = ConsoleColor.Gray;

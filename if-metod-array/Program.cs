@@ -26,7 +26,7 @@ if (menuKey.Key == ConsoleKey.D1) target = 10;
 else if (menuKey.Key == ConsoleKey.D2) target = 15;
 else if (menuKey.Key == ConsoleKey.D3) target = 30;
 else if (menuKey.Key == ConsoleKey.Q) break;
-else continue;
+else continue; //fick den från google!!
 
 PlayGame(target);
 }
@@ -52,7 +52,7 @@ while (true)
 Console.Clear();
 
 int doorsLeft = target - streak;
-double runChance = Math.Pow(0.5, doorsLeft) * 100;
+double possoble = Math.Pow(0.5, doorsLeft) * 100;
 
 // ===== TOP DASHBOARD =====
 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -66,7 +66,7 @@ Console.WriteLine($"Record: {record}");
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine($"Doors Left: {doorsLeft}");
 Console.ForegroundColor = ConsoleColor.Red;
-Console.WriteLine($"Chance to finish run: {runChance:F10}%");
+Console.WriteLine($"Chance to finish run: {possoble:F10}%");
 Console.ForegroundColor = ConsoleColor.Gray;
 Console.WriteLine("Next door chance always: 50%");
 Console.WriteLine("--------------------------------");

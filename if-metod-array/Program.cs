@@ -1,14 +1,21 @@
-﻿while (true) // App loop
+﻿while (true)//---MAIN-MENU-LOOP---------------
 {
 Console.Clear();
+
+Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine("=== DOOR STREAK ===");
+Console.ForegroundColor = ConsoleColor.White;
 Console.WriteLine("Choose a challenge:");
+Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine("1) 10 doors (Easy)");
+Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine("2) 15 doors (Medium)");
+Console.ForegroundColor = ConsoleColor.Red;
 Console.WriteLine("3) 30 doors (Insane)");
+Console.ForegroundColor = ConsoleColor.Gray;
 Console.WriteLine("Q) Exit");
-Console.WriteLine("-------------------");
-Console.Write("Your choice: ");
+Console.ResetColor();
+Console.Write("\nYour choice: ");
 
 ConsoleKeyInfo menuKey = Console.ReadKey();
 Console.WriteLine();
@@ -23,56 +30,69 @@ else continue;
 
 PlayGame(target);
 }
+Console.Clear();
+Console.ForegroundColor = ConsoleColor.Cyan;
+Console.WriteLine("Thanks for playing Door Streak!");
+Console.ResetColor();
 
-Console.WriteLine("\nThanks for playing Door Streak.");
 
 static void PlayGame(int target)
 {
+// Game variables
 int streak = 0;
 int record = 0;
 int attempts = 0;
 
 List<string> history = new List<string>();
 Random random = new Random();
-bool quit = false;
 
-while (!quit)
+//-----------------------GAME-LOOP-----------------------------------------
+while (true)
 {
 Console.Clear();
 
 int doorsLeft = target - streak;
 double runChance = Math.Pow(0.5, doorsLeft) * 100;
 
+// ===== TOP DASHBOARD =====
+Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine($"=== DOOR STREAK ({target}) ===");
-Console.WriteLine($"Record: {record}");
+Console.ForegroundColor = ConsoleColor.White;
 Console.WriteLine($"Attempts: {attempts}");
+Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine($"Current Streak: {streak}");
-Console.WriteLine($"Doors left: {doorsLeft}");
-Console.WriteLine($"Next door chance: 50%");
+Console.ForegroundColor = ConsoleColor.Magenta;
+Console.WriteLine($"Record: {record}");
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.WriteLine($"Doors Left: {doorsLeft}");
+Console.ForegroundColor = ConsoleColor.Red;
 Console.WriteLine($"Chance to finish run: {runChance:F10}%");
+Console.ForegroundColor = ConsoleColor.Gray;
+Console.WriteLine("Next door chance always: 50%");
 Console.WriteLine("--------------------------------");
-Console.WriteLine("Choose door 1 or 2 (or press Q to quit run)");
+
+Console.ResetColor();
+Console.WriteLine("Choose door 1 or 2 (Q = quit run)");
 Console.Write("> ");
 
 ConsoleKeyInfo key = Console.ReadKey();
 Console.WriteLine();
 
+//-------------------Quit-run------------------------------
 if (key.Key == ConsoleKey.Q)
 break;
 
 int choice;
-try
-{
+try{
 choice = Convert.ToInt32(key.KeyChar.ToString());
 }
-catch
-{
-continue;
-}
+
+catch{ continue; }
 
 if (choice != 1 && choice != 2)
 continue;
 
+//----------------------DOOR-CHECK-------------------------------
 int correctDoor = random.Next(1, 3);
 attempts++;
 
@@ -80,47 +100,63 @@ bool win = choice == correctDoor;
 
 if (win)
 {
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("YOU FOUND GOLD!");
 streak++;
 history.Add("Win");
-Console.WriteLine("YOU FOUND GOLD!");
 }
+
 else
 {
+Console.ForegroundColor = ConsoleColor.Red;
+Console.WriteLine($"EMPTY! Gold was behind door {correctDoor}");
 streak = 0;
 history.Add("Loss");
-Console.WriteLine($"EMPTY! Gold was behind door {correctDoor}");
 }
 
 record = Math.Max(record, streak);
 
+Console.ResetColor();
+
+//------------------Win-condition-Impossible---------------------
 if (streak == target)
 {
+Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine($"\nYOU BEAT THE {target} DOOR CHALLENGE!");
+Console.ResetColor();
 Console.ReadKey();
-quit = true;
-}
-else
-{
-Console.WriteLine("Press any key...");
-Console.ReadKey();
-}
+break;
 }
 
-// End of run stats
+Console.WriteLine("Press any key for next door...");
+Console.ReadKey();
+}
+
+//----------------------RUN-SUMMARY----------------------------
 Console.Clear();
+
 int wins = 0, losses = 0;
 foreach (var r in history)
 {
+
 if (r == "Win") wins++;
+
 else losses++;
 }
 
-Console.WriteLine($"=== RUN STATS ({target}) ===");
-Console.WriteLine($"Attempts: {attempts}");
+Console.ForegroundColor = ConsoleColor.Cyan;
+Console.WriteLine($"=== RUN SUMMARY ({target}) ===");
+Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine($"Wins: {wins}");
+Console.ForegroundColor = ConsoleColor.Red;
 Console.WriteLine($"Losses: {losses}");
-Console.WriteLine($"Best streak: {record}");
-Console.WriteLine("----------------------------");
-Console.WriteLine("Press any key to return to menu...");
+Console.ForegroundColor = ConsoleColor.Magenta;
+Console.WriteLine($"Best Streak: {record}");
+Console.ForegroundColor = ConsoleColor.White;
+Console.WriteLine($"Attempts: {attempts}");
+Console.ForegroundColor = ConsoleColor.Gray;
+Console.WriteLine("\nPress any key to return to menu...");
+
+Console.ResetColor();
 Console.ReadKey();
 }

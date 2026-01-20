@@ -26,7 +26,9 @@ if (menuKey.Key == ConsoleKey.D1) target = 10;
 else if (menuKey.Key == ConsoleKey.D2) target = 15;
 else if (menuKey.Key == ConsoleKey.D3) target = 30;
 else if (menuKey.Key == ConsoleKey.Q) break;
-else continue; //fick den från google!!
+else continue; //fick den från C#.progdocs!!
+
+// Jag vill lägga 2 spicifica key ena ger 90% förr chans den andra samma 50% de är inte sinlyga men går fram tillbaka i startet.
 
 PlayGame(target);
 }

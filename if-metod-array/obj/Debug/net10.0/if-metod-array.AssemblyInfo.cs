@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("if-metod-array")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b6362eb5709fcdb489cbc62ebd7ea30b72fce1e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+feb16d630b881004d8d1f555276c1e5b2ce8fd10")]
 [assembly: System.Reflection.AssemblyProductAttribute("if-metod-array")]
 [assembly: System.Reflection.AssemblyTitleAttribute("if-metod-array")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

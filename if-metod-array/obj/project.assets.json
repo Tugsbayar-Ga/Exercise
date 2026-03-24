@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Exempel\\Exercise\\if-metod-array\\if-metod-array.csproj",
+      "projectUniqueName": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\if-metod-array\\if-metod-array.csproj",
       "projectName": "if-metod-array",
-      "projectPath": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Exempel\\Exercise\\if-metod-array\\if-metod-array.csproj",
+      "projectPath": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\if-metod-array\\if-metod-array.csproj",
       "packagesPath": "C:\\Users\\tugsbayar.galbadrak\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Exempel\\Exercise\\if-metod-array\\obj\\",
+      "outputPath": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\if-metod-array\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

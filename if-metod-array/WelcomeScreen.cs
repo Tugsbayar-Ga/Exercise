@@ -1,4 +1,6 @@
-static class WelcomeScreen
+
+
+public static class WelcomeScreen
 {
     public static void Show()
     {

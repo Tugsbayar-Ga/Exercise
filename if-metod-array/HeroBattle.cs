@@ -2,7 +2,12 @@ static class HeroBattle
 {
     public static void Run()
     {
-        Console.Clear();
+    var ToMain = Console.ReadKey(intercept: true);
+
+    if (ToMain.Key == ConsoleKey.Q)
+        {
+            MainMenu.Show(); 
+        }
 
         int heroHp = 100;
         int heroStamina = 100;
@@ -21,6 +26,7 @@ static class HeroBattle
 
                 if (heroStamina <= 0)
                 {
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("Du är för trött och vilar denna runda.");
                     heroStamina = 100;
                 }
@@ -31,8 +37,10 @@ static class HeroBattle
 
                     for (int j = 0; j < attacks; j++)
                     {
+                        Console.ForegroundColor = ConsoleColor.Green;
                         HeroAttack(ref enemyHp, ref heroStamina, i + 1);
                         if (heroStamina <= 0 || enemyHp <= 0) break;
+                        Console.ResetColor();
                     }
                 }
 
@@ -48,25 +56,29 @@ static class HeroBattle
                     Console.WriteLine("Tryck Enter för nästa runda");
                     Console.ReadLine();
                 }
-
                 round++;
             }
 
             if (heroHp <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("Du dog! Spelet är slut!");
                 break;
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine($"Du besegrade fiende {i + 1}!");
             }
         }
 
         if (heroHp > 0)
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Du vann mot alla fiender! Bra jobbat!");
 
+        Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine("\nTryck Enter för att återgå till huvudmenyn");
+        Console.ResetColor();
         Console.ReadLine();
     }
 
@@ -75,7 +87,7 @@ static class HeroBattle
         int value;
         while (true)
         {
-            Console.Clear(); // ← rensar även vid felaktig inmatning
+            Console.Clear(); 
             Console.WriteLine(text);
             if (!int.TryParse(Console.ReadLine(), out value))
                 Console.WriteLine("Du måste skriva ett tal!");
@@ -89,6 +101,7 @@ static class HeroBattle
     static void ShowStatus(int heroHp, int heroStamina, int enemyHp, int round, int enemyNumber)
     {
         Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("====================");
         Console.WriteLine($"Runda {round} mot fiende {enemyNumber}");
         Console.WriteLine($"HJÄLTE: HP [{heroHp}] STAMINA [{heroStamina}]");

@@ -1,4 +1,4 @@
-static class MainMenu
+public static class MainMenu
 {
     public static void Show()
     {
@@ -27,7 +27,7 @@ static class MainMenu
             if (key.Key == ConsoleKey.D1)
                 DoorStreakMenu.Show();
             else if (key.Key == ConsoleKey.D2)
-                HeroBattle.run();
+                HeroBattle.Run();
             else if (key.Key == ConsoleKey.Q)
             {
                 Console.Clear();

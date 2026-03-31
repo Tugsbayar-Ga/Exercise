@@ -1,3 +1,4 @@
+
 public class Game
 {
 public static void PlayGame(int target)
@@ -115,6 +116,11 @@ while (true)
         luckyChance = 0.5;
         continue;
     }
+    if (key.Key == ConsoleKey.T)
+    {
+        luckyChance = 1.0;
+        continue;
+    }
 
     //------------------------Only 1 or 2--------------------------
     int choice;
@@ -216,12 +222,11 @@ else if (againKey.Key == ConsoleKey.Q){
     else
     {
         Console.WriteLine("\nPlay again? (Y = Yes / Q = Quit)");
-        Console.Write("> ");
-    } Console.Clear();
+        Console.Write("> "); 
+    } 
 }
 else
 {
-    Console.Write("> ");
+    Console.Write("> ");Console.Clear();
 }
-
 }}}

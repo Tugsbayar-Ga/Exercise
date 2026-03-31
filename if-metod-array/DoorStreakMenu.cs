@@ -1,4 +1,4 @@
-﻿static class DoorStreakMenu
+﻿public static class DoorStreakMenu
 {
     public static void Show()
     {

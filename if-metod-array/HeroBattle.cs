@@ -32,7 +32,7 @@ static class HeroBattle
                 }
                 else
                 {
-                    Console.Clear(); // ← fixat här
+                    Console.Clear(); // fixat här
                     int attacks = AskForNumber("Hur många attacker vill du göra? (1-5)", 1, 5);
 
                     for (int j = 0; j < attacks; j++)

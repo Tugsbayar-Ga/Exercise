@@ -1,2 +1,0 @@
-WelcomeScreen.Show();
-MainMenu.Show();

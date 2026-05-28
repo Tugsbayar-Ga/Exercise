@@ -1,13 +1,19 @@
-
+// Meny för Door Streak
 public static class DoorStreakMenu
 {
+    // Visar svårighetsgradsmenyn
     public static void Show()
     {
+        // Loop tills spelaren backar
         while (true)
         {
             Console.Clear();
+
+            // Rubrik för spelet
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("=== Glasögonmannen Emilia STREAK ===");
+
+            // Svårighetsalternativ för spelet
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Choose a challenge:");
             Console.ForegroundColor = ConsoleColor.Green;
@@ -21,9 +27,11 @@ public static class DoorStreakMenu
             Console.ResetColor();
             Console.Write("\nYour choice: ");
 
+            // Läser utan att visa tangenten
             var key = Console.ReadKey(intercept: true);
             Console.WriteLine();
 
+            // Startar spelet med målantal
             if (key.Key == ConsoleKey.D1)      Game.PlayGame(10);
             else if (key.Key == ConsoleKey.D2) Game.PlayGame(15);
             else if (key.Key == ConsoleKey.D3) Game.PlayGame(30);
@@ -37,8 +45,11 @@ public static class DoorStreakMenu
 
 // Jag vill att innan while true, komemr finnas två val där vil du spela eller inte för y(yes) och n(no) och "fråga igens är du ja och nej fårgar men isleättel nej confirm " säker på engelska. om no så går det till avslutet  och slutet frågar igen och 3 är du säker samma sak will köra och avsluta, men y(yes) nångong då kör spelat som normalt
 
+// Spellogik för Door Streak
 public class Game
 {
+
+// Kör en hel omgång
 public static void PlayGame(int target)
 {
     // Variables
@@ -47,9 +58,11 @@ public static void PlayGame(int target)
     int attempts = 0;
     double luckyChance = 0.5; // default 50%
 
+    // List används inte array
     List<string> history = new List<string>();
     Random random = new Random();
 
+    // Startskärm visas
     Console.Clear();
     Console.ForegroundColor = ConsoleColor.Cyan;
     Console.WriteLine($"=== DOOR STREAK ({target}) ===");
@@ -58,6 +71,7 @@ public static void PlayGame(int target)
     Console.Write("> ");
 
     //-----------------------Game loop-----------------------------------------
+    // Bekräftelseloop innan start 
     while (true)
 {
     ConsoleKeyInfo startKey = Console.ReadKey(intercept: true);
@@ -78,12 +92,14 @@ public static void PlayGame(int target)
             return; // Back to menu
         else
         {
+            // Ogiltigt val, frågar igen
             Console.WriteLine("\nDo you want to play? (Y = Yes / Q = Quit)");
             Console.Write("> ");
         }
     }
     else if (startKey.Key == ConsoleKey.Q)
     {
+        // Bekräftar avslut
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("Are you sure? (Y = Confirm / N = Go back)");
         Console.ResetColor();
@@ -95,26 +111,31 @@ public static void PlayGame(int target)
             return; // Back to main menu
         else
         {
+            // Tillbaka, frågar igen
             Console.WriteLine("\nDo you want to play? (Y = Yes / Q = Quit)");
             Console.Write("> ");
         }
     }
     else
     {
+        // Ogiltigt
         Console.Write("> ");
     }
 }
 
 //-----------------------Game loop-----------------------------------------
+// Huvud spelloop start
 while (true)
 {
     Console.Clear();
-
+    
+    // Beräknar statistik för rundan
     int doorsLeft = target - streak;
     double possible = Math.Pow(luckyChance, doorsLeft) * 100;
     double streakChance = Math.Pow(luckyChance, streak) * 100;
 
     //------------------------Stats----------------------
+    // Visar all spelstatistik
     Console.ForegroundColor = ConsoleColor.Cyan;
     Console.WriteLine($"=== DOOR STREAK ({target}) ===");
     Console.ForegroundColor = ConsoleColor.White;
@@ -129,21 +150,24 @@ while (true)
     Console.WriteLine($"Chance to finish run: {possible:F10}%");
     Console.WriteLine($"Chance this streak exists: {streakChance:F6}%");
     Console.ForegroundColor = ConsoleColor.Gray;
-    Console.WriteLine($"Next door chance always: {luckyChance * 100:F0}%");
+    Console.WriteLine($"Next door chance always: {luckyChance * 100:F3}%");
     Console.WriteLine("--------------------------------");
 
     Console.ResetColor();
     Console.WriteLine("Choose door 1 or 2 (Q = quit run)");
     Console.Write("> ");
 
+    // Läser spelarens dörval
     ConsoleKeyInfo key = Console.ReadKey(intercept: true);
     Console.WriteLine();
 
     //-----------------------Quit run------------------------------
+    // Q avslutar nuvarande run
     if (key.Key == ConsoleKey.Q)
         break;
 
     //-------------------Hidden Lucky Keys (no hints shown)----------
+    // Dolda fuskknapper
     if (key.Key == ConsoleKey.L)
     {
         luckyChance = 0.9;
@@ -161,6 +185,7 @@ while (true)
     }
 
     //------------------------Only 1 or 2--------------------------
+    // Validerar att val är 1 eller 2
     int choice;
     try
     {
@@ -172,6 +197,7 @@ while (true)
         continue;
 
     //------------------------DOOR CHECK-------------------------------
+    // Avgör vinst eller förlust
     attempts++;
 
     bool win = random.NextDouble() < luckyChance;
@@ -179,6 +205,7 @@ while (true)
 
     if (win)
     {
+        // Feedback vid vinst
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("YOU FOUND GOLD!");
         streak++;
@@ -186,16 +213,19 @@ while (true)
     }
     else
     {
+        // Feedback vid förlust
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"EMPTY! Gold was behind door {correctDoor}");
         streak = 0;
         history.Add("Loss");
     }
-
+    
+    // Uppdaterar rekordet
     record = Math.Max(record, streak);
     Console.ResetColor();
 
-    //--------------------Win Condition---------------------
+    //--------------------Win condition---------------------
+    // Kontrollerar om spelaren vann
     if (streak == target)
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -209,9 +239,11 @@ while (true)
     Console.ReadKey();
 }
 
-//----------------------End stats----------------------------
+//----------------------End stats--------------------------------
+// Sammanfattning efter avslutad run
 Console.Clear();
 
+// Räknar vinster och förluster
 int wins = 0, losses = 0;
 foreach (var r in history)
 {
@@ -219,6 +251,7 @@ foreach (var r in history)
     else losses++;
 }
 
+// Visar resultatskärmen
 Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine($"=== RUN SUMMARY ({target}) ===");
 Console.ForegroundColor = ConsoleColor.Green;
@@ -232,6 +265,7 @@ Console.WriteLine($"Attempts: {attempts}");
 Console.ResetColor();
 
 //-------------------Play again or quit after run--------------------
+// Frågar om spela igen
 Console.WriteLine("\nPlay again? (Y = Yes / Q = Quit)");
 Console.Write("> ");
 
@@ -247,18 +281,22 @@ if (againKey.Key == ConsoleKey.Y)
     return;
 }
 else if (againKey.Key == ConsoleKey.Q){
+
+    // Bekräftar avslut
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine("Are you sure? (Y = Confirm / N = Go back)");
     Console.ResetColor();
+    
     Console.Write("> ");
     ConsoleKeyInfo finalConfirm = Console.ReadKey(intercept: true);
     Console.WriteLine();
 
-// Back to main
+// To main
     if (finalConfirm.Key == ConsoleKey.Y)
         return; 
     else
     {
+        // Frågar igen
         Console.WriteLine("\nPlay again? (Y = Yes / Q = Quit)");
         Console.Write("> "); 
     } 

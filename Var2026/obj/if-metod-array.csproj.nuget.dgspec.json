@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\if-metod-array.csproj": {}
+    "c:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\if-metod-array.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\if-metod-array.csproj": {
+    "c:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\if-metod-array.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\if-metod-array.csproj",
+        "projectUniqueName": "c:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\if-metod-array.csproj",
         "projectName": "if-metod-array",
-        "projectPath": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\if-metod-array.csproj",
+        "projectPath": "c:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\if-metod-array.csproj",
         "packagesPath": "C:\\Users\\tugsbayar.galbadrak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\obj\\",
+        "outputPath": "c:\\Users\\tugsbayar.galbadrak\\Documents\\Programering 1\\Lektioner\\Exercise\\Var2026\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,12 +49,6 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "dependencies": {
-            "Raylib-cs": {
-              "target": "Package",
-              "version": "[7.0.2, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

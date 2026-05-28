@@ -1,9 +1,11 @@
+// Välkomstskärm och huvudmeny
 public static class WelcomeScreen
 {
     public static void Show()
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Cyan;
+        // ASCII för "EMILIA"
         Console.WriteLine(@"
   ███████╗███╗   ███╗██╗██╗     ██╗ █████╗ 
   ██╔════╝████╗ ████║██║██║     ██║██╔══██╗
@@ -17,11 +19,15 @@ public static class WelcomeScreen
         Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine("\n        Press any key to continue...");
         Console.ResetColor();
+
+        // Väntar på knapptryckning
         Console.ReadKey();
     }
-
+    
+    // Visar och hanterar huvudmenyn
     public static void main()
     {
+        // Loop tills spelaren avslutar
         while (true)
         {
             Console.Clear();
@@ -30,6 +36,8 @@ public static class WelcomeScreen
   ╔══════════════════════════════════╗
   ║       EMILIA'S  ARCADE           ║
   ╚══════════════════════════════════╝");
+            
+            // Menyalternativ
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\n  Choose your game:\n");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -43,16 +51,19 @@ public static class WelcomeScreen
             Console.WriteLine("  Q)  Exit");
             
             Console.Write("\n  Your choice: ");
-
+            
+            // Läser utan att visa tangenten
             var key = Console.ReadKey(intercept: true);
             Console.WriteLine();
 
+            // Navigerar till valt spel
             if (key.Key == ConsoleKey.D1)
                 DoorStreakMenu.Show();
             else if (key.Key == ConsoleKey.D2)
                 HeroBattle.Run();
             else if (key.Key == ConsoleKey.Q)
             {
+                // Avslutar med meddelande
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\n  Thanks for playing! See you next time, Emilia!");
@@ -60,6 +71,7 @@ public static class WelcomeScreen
                 Thread.Sleep(1000);
                 return;
             }
+            // Val 3 ej implementerat
         }
     }
 }
